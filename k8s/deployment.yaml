@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: app-demo
-          image: $IMAGE
+          image: PARAM_IMAGE
           ports:
           - containerPort: 80
