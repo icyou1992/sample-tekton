@@ -18,14 +18,14 @@ function App() {
     },
     left: {
       display: 'flex',
-      flex: 1,
+      flex: .5,
       flexDirection: 'column',
       alignItems: 'center',
       padding: padding,
     },
     right: {
       display: 'flex',
-      flex: 1,
+      flex: .5,
       flexDirection: 'column',
       alignItems: 'center',
       padding: padding,
@@ -49,6 +49,9 @@ function App() {
                 <div key={index}>{item}</div>
               ))}
             </div>
+            <div>qwerqwer</div>
+            <div>qwerqwer</div>
+            <div>qwerqwer</div>
             <div>qwerqwer</div>
           </div>
         </div>
