@@ -35,20 +35,22 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div style={styles.left}>
-          <img src={logo} className="App-logo" alt="logo" />
-          <img src={arch} />
-        </div>
-        <div style={styles.right}>
-          <p>
-            <code>PFe DEMO APP</code> 
-          </p>
-          <div style={styles.contents}>
-            {items.map((item, index) => (
-              <div key={index}>{item}</div>
-            ))}
+        <div style={styles.app}>
+          <div style={styles.left}>
+            <img src={logo} className="App-logo" alt="logo" />
+            <img src={arch} />
           </div>
-          <div>qwerqwer</div>
+          <div style={styles.right}>
+            <p>
+              <code>PFe DEMO APP</code> 
+            </p>
+            <div style={styles.contents}>
+              {items.map((item, index) => (
+                <div key={index}>{item}</div>
+              ))}
+            </div>
+            <div>qwerqwer</div>
+          </div>
         </div>
       </header>
     </div>
