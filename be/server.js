@@ -1,20 +1,20 @@
 
-import express, { urlencoded } from 'express';
-import cors from 'cors';
-import { createConnection } from 'mysql';
+const express = require("express");
+const cors = require("cors");
+const mysql = require("mysql");
+const bodyparser = require("body-parser");
+
+const dbConfig = require("./config.js");
 
 const app = express();
 const port = 8080;
 
-let db = createConnection({
-  // connectionLimit: 10,
-  // acquireTimeout: 30000, //30 secs
-  host: 'db-pfe-dev.cw4iktllotnd.ap-northeast-2.rds.amazonaws.com',
-  user: 'pfe',
-  password: 'test123!',
-  database: 'demo',
-  port: 3306,
-});
+var connection = mysql.createConnection(dbConfig)
+
+connection.connect(err => {
+  if(err) console.log(err)
+  else console.log("connected to db")
+})
 
 app.use(cors({
   origin: "*",
@@ -22,7 +22,8 @@ app.use(cors({
   optionsSuccessStatus: 200,
 }))
 
-app.use(urlencoded({ extended: true }))
+app.use(bodyparser.urlencoded({ extended: true }))
+app.use(bodyparser.json())
 
 app.listen(port, () => {
     console.log(`Server run : http://localhost:${port}/`)
@@ -32,21 +33,24 @@ app.get('/', (req, res) =>{
   res.send( { test: 'Server Response Success' } );
 })
 
+
 app.get('/team', (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
+  
+  connection.query("select * from team;", (err, data) => {
+    console.log(data)
 
-  db.connect(err => {
-    if(err) { console.log(err) }
-    else { console.log("???") }
-  })
-  db.query('select * from team', (err, data) => {
-    console.log(err);
-    console.log(data);
-    res.send(data);
+    res.send(data)
   })
 })
 
 
-
+app.post('/team', (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  console.log(req)
+  connection.query(`insert into team (name, phone) values (?, ?);`, [req.body.name, req.body.phone], (err, rows, fields) => {
+    res.send(rows)
+  })
+})
 
 

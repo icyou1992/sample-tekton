@@ -1,13 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import logo from './logo.png';
 import arch from './arch.jpg';
 import './App.css';
 
+import axios from 'axios';
+
 function App() {
   const [items, setItems] = useState([]);
-  const [name, setName] = useState();
-  const [phone, setPhone] = useState();
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const padding = 24;
+
+  const url = "http://localhost:8080"
+  // const url = "http://k8s-tektonpi-tektonda-4c2c0adecd-1494743996.ap-northeast-2.elb.amazonaws.com:8080"
 
   const styles = {
     app: {
@@ -48,7 +53,25 @@ function App() {
       marginRight: 8,
     }
   }
+  const setTeam = async () => {
+    try {
+      await axios.post(url + "/team", { name: name, phone: phone })
+      .then((res) => console.log(res))
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
+  const getTeam = async () => { 
+    try {
+      const rslt = await axios.get(url + "/team")
+      console.log(rslt)
+      setItems(rslt.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -63,17 +86,15 @@ function App() {
             </p>
             
             <div>
-              <input style={styles.input} type="text" value={name} onChange={() => setName(name)}/>
-              <input style={styles.input} type="text" value={phone} onChange={() => setPhone(phone)}/>
-              <button onClick={() => {}}>입력</button>
-              <button style={{marginLeft: 16}} onClick={() => {}}>목록</button>
+              <input style={styles.input} type="text" value={name} onChange={(e) => setName(e.target.value)}/>
+              <input style={styles.input} type="text" value={phone} onChange={(e) => setPhone(e.target.value)}/>
+              <button onClick={setTeam}>입력</button>
+              <button style={{marginLeft: 16}} onClick={getTeam}>목록</button>
             </div>
             <div style={styles.contents}>
               {items.map((item, index) => (
                 <div key={index}>
-                  <div>{item}</div>
-                  <div>{item.name}</div>
-                  <div>{item.phone}</div>
+                  {item.name} {item.phone}
                 </div>
               ))}
             </div>
