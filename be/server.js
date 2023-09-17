@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import db from "./db.js"
+import connection from "./db.js"
 
 const app = express();
 const port = 8080;
@@ -14,7 +14,7 @@ app.get('/', (req, res) =>{
 })
 
 app.get('/team', (req, res) =>{
-    db.connection.query('select * from team').then(team => {
+    connection.query('select * from team').then(team => {
       console.log(team)
       res.send(team)
     })
