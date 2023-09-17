@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deploy-demo-fe
+  name: deploy-demo-be
   labels:
-    app: app-fe
+    app: app-be
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: app-fe
+      app: app-be
   template:
     metadata:
       labels:
-        app: app-fe
+        app: app-be
     spec:
       containers:
-        - name: app-demo-fe
+        - name: app-demo-be
           image: PARAM_IMAGE
           ports:
           - containerPort: 80
