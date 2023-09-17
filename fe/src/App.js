@@ -11,8 +11,8 @@ function App() {
   const [phone, setPhone] = useState("");
   const padding = 24;
 
-  const url = "http://localhost:8080"
-  // const url = "http://k8s-tektonpi-tektonda-4c2c0adecd-1494743996.ap-northeast-2.elb.amazonaws.com:8080"
+  // const url = "http://localhost:8080"
+  const url = "http://k8s-tektonpi-tektonda-4c2c0adecd-1494743996.ap-northeast-2.elb.amazonaws.com:8080"
 
   const styles = {
     app: {
