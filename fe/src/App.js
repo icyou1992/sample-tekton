@@ -12,7 +12,7 @@ function App() {
   const padding = 24;
 
   // const url = "http://localhost:8080"
-  const url = "http://k8s-tektonpi-tektonda-4c2c0adecd-1494743996.ap-northeast-2.elb.amazonaws.com:8080"
+  const url = "http://k8s-default-ingressd-68f7a0df95-1821759015.ap-northeast-2.elb.amazonaws.com/:8080"
 
   const styles = {
     app: {
