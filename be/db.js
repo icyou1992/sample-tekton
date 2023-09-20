@@ -1,9 +1,9 @@
-const port = 3306;
+// const port = 3306;
 
-const db = () => {
+// const db = () => {
  
 
-  return connection
-}
+//   return connection
+// }
 
-export default db;
+// export default db;
