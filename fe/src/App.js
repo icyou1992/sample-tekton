@@ -82,7 +82,7 @@ function App() {
           </div>
           <div style={styles.right}>
             <p>
-              <code>PFe DEMO APP</code> 
+              <code>PFe DEMO APP sadfwq</code> 
             </p>
             
             <div>
